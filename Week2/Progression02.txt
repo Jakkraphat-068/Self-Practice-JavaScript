@@ -1,0 +1,107 @@
+Self-Pactice-02 เป็นการเรียนเกี่ยวกับ object เป็นหลัก 
+ object มีความคล้าย array คือสามารถเก็บได้หลาย item และ ได้หลาย data type
+ ข้อแตกต่างหลักๆคือ object จะใช้ '{}' ล้อมรอบ และข้อมูลใน object จะมี key กำหนดไว้ {key: value}
+ Objects ใน JavaScript ไม่มี index 
+1.ตัวอย่าง array 
+  -Simple Object: ก็คือ object ปกติ {key: value} หลายอัน
+  -Aggregated Object ก็คือ object ซ้อน object 
+  -อย่างที่รู้ ว่า object เก็บ value ได้หลายอย่าง แม้แต่ array หรือ function ก็เก็บได้
+
+
+
+2.วิธีสร้าง Object
+ 2.1 Object Literals
+  -ง่ายที่สุด: เขียน {key: value} ตรงๆ
+  -อ่านง่ายแต่ถ้าต้องสร้างหลายๆ object แบบเดียวกันต้องเขียนซ้ำเยอะ
+
+ 2.2. Constructor Functions
+  2.2.1 -จุดเด่นคือ การใช้ new ในการสร้าง object ใหม่
+        -เวลามี method อะไร ต้องมี prototype
+      /* chatgbt อธิบาย
+        -function Point(x,y) → ฟังก์ชันพิเศษสำหรับใช้สร้าง object
+        -this.x = x → ผูกค่ากับ object ที่กำลังถูกสร้าง
+        -new Point(1,2) → สร้าง object ใหม่ {x:1,y:2}
+        -เวลาสร้างด้วย new → ได้ object ที่อิงกับ prototype ของ Point
+      */
+  2.2.2 ข้อดี
+        -ช่วยให้การสร้างออบเจ็กต์ที่มีโครงสร้างเดียวกันทำได้ง่ายและสะดวก
+        -สามารถเพิ่มฟังก์ชันการทำงานให้กับออบเจ็กต์ได้โดยตรง
+   ตามที่ AI บอก 'Constructor Functions คือ ฟังก์ชันพิเศษที่ใช้สำหรับสร้างและกำหนดค่าเริ่มต้นให้กับออบเจ็กต์ (Object) โดยทั่วไปจะใช้ร่วมกับคำสั่ง new เพื่อสร้างอินสแตนซ์ใหม่
+   ของออบเจ็กต์ที่มีคุณสมบัติหรือพฤติกรรมเฉพาะตัว ดังนั้นตามที่ผมเข้าใจคือ การที่เราสามารถสร้าง object ที่มีคุณสมบัติ มี key เหมือนกันหลายตัวได้และสามารถใช้ function ที่อยู่ในนั้นได้
+   ทำให้เราไม่ต้องไปสร้างหรือกำหนดใหม่ทุกรอบ อย่างสามารถมีข้อมูล customer ได้หลายคน
+
+ 2.3 ES6 Classes 
+  2.3.1 -ข้อที่ต่างจาก Constructor Functions 
+          -คือ method ไม่ใช้ prototype 
+          -มีการใช้ใช้ constructor 
+          -ใช้ class
+      /*chatgbt อธิบาย
+        -class Point { ... } → สร้าง class ชื่อ Point
+        -constructor(x, y) → method พิเศษที่ทำงานทันทีเมื่อใช้ new
+        -this.x = x; this.y = y; → กำหนดค่า property ให้ object ที่สร้าง
+        -distance(anotherPoint) → method ธรรมดาอยู่ใน class
+        -const p5 = new Point(10, 30) → สร้าง object p5 ที่มีค่า {x:10,y:30}
+        -p5.distance(p6) → เรียก method โดยส่ง object อีกตัวมา
+      */
+    โดยรวมคือคล้ายกับ Constructor Functions  แต่ดูง่ายกว่า
+
+ 2.4 Object.create()
+  2.4.1 ออบเจ็กต์ที่สร้างขึ้นจะมีออบเจ็กต์ที่กำหนดเป็นprototypeของมัน
+     /*chatgbt อธิบาย
+       Object.create(person2) → สร้าง object ใหม่ที่ prototype = person
+       student2.studentId = ... → เพิ่ม property ใหม่เฉพาะ student
+       เวลาเรียก student2.personId → หาใน student2 ไม่เจอ → ไปหาต่อใน prototype (คือ person2)
+      */
+  2.4.2 ข้อดีของ Object.create()
+         -ช่วยให้การสืบทอด (inheritance) ทำได้ง่ายและชัดเจน
+         -สามารถกำหนด prototype ได้โดยตรง
+
+
+
+3. การเข้าถึง/แก้ไข Property ใน object
+  1.ค่าเดิมใน object สามารถถูกเปลี่ยนแปลงได้จริง
+  2.อธิบาย ในแต่ล่ะคำสั่งในตัวอย่าง 
+   book2.isbn: เป็นการเข้าถึงแบบปกติ
+   book2['title']: เป็นการเข้าถึงอีกแบบ
+   book2['author']['firstname']: เหมือน book2.author.firstname
+   book2.author.firstname = 'Uma': การแก้ค่าแบบง่ายๆ
+   book2['publishedYear'] = 2000: เป็นการเพิ่ม property ใหม่
+
+
+
+4. Object Methods
+   คือฟังก์ชันที่ถูกกำหนดไว้ภายในออบเจ็ค (Object) และสามารถเรียกใช้งานได้ผ่านออบเจ็คนั้น ๆ
+
+
+
+5. Object Passing by Reference
+ อย่างที่เรารู้ คือ ตัวแปลที่ประกาศ object นั้นไม่ได้เก็บค่านั้นจริงๆ มันแค่เก็บ address ของค่าๆนั้น ดังนั้น object ต่อให้มีค่าเหมือนกันทุกอย่างแต่ทั้งสองจะไม่เท่ากัน
+
+
+
+6. Object Passing to functions
+ เป็นการแสดงให้เห็นว่า object เองก็สามารถนำไปเป็น parameter ใน function ได้ แต่อย่างที่เรารู้สิ่ง parameter ได้คือ address ของ object
+
+
+
+7. Shallow Equality
+ การเปรียบเทียบความเท่ากันของ object แต่ไม่ใช่การเปรียบเทียบค่าโดยตรงแต่เป็นการเทียบ address กัน
+
+
+
+8. JSON
+ -JSON = JavaScript Object Notation → text format ที่เหมือน object literal
+ -ใช้แลกเปลี่ยนข้อมูล client-server
+ -ต้องใช้ double quotes กับ key และ string
+
+
+
+9.  ...(Spread) ใน Object (object ก็สามารถใช้ spread ได้เหมือนใน array)
+
+
+
+10.  Object Destructuring (โดยรวมก็ยังเหมือน array และทดสอบแล้วว่า เราสามารถใช้ ...(the rest) กับ object ได้)
+
+
+
+11. Nested Object Destructuring (ที่ช่วยให้เราสามารถดึงค่าจาก object ที่ซ้อนกัน)
