@@ -169,7 +169,7 @@ function getFirstName({ displayName, fullName: { firstName } }) {
  }
  console.log(studentId(students00)) //65123
  console.log(getFirstName(students00))
-
+console.log("/////////////////////////////////////////////////////////////////////////////////////");
  // Destructuring: Unpacking Combined Array and Object passed as a function parameter
  const person00 = [
  { id: 1, name: 'Suda' },
@@ -181,3 +181,73 @@ function getFirstName({ displayName, fullName: { firstName } }) {
  return name
  }
  console.log(getPersonName(person00)) // Surapong
+console.log("/////////////////////////////////////////////////////////////////////////////////////");
+ /////////////// ลองทำโจทย์ chatGBT gen /////////////////////////
+
+/* 1. Function Declaration vs Expression
+โจทย์: เขียนฟังก์ชันบวกเลข 2 ตัว แบบ
+Function Declaration
+Function Expression */
+
+// 1.1
+function z01 (a, b) {
+    return a + b
+}
+
+console.log(z01(5,4));
+// 1.2
+const z02 = function(a, b) {return a + b}
+console.log(z02(10, 100));
+
+/* 2. Default และ Rest Parameters
+เขียนฟังก์ชัน sumAll ที่บวกเลขทุกตัวที่ส่งเข้ามา และมี default parameter ถ้าไม่ส่งเลขเลยให้บวกเลขกับ 0 */
+
+function z03 (a = 0, ...b) {
+    let total = a;
+    for (const i of b) {
+        total += i;
+    }
+    return total;
+}
+console.log(z03());
+
+console.log(z03(1, 20, 30));
+
+/* 3. Arrow Function
+เขียนฟังก์ชันลูกศร ที่คืนค่ากำลังสองของตัวเลขที่รับเข้ามา*/
+const z04 = a => a * a
+console.log(z04(5));
+
+/* 4. Callback Function 
+เขียนฟังก์ชัน  z05 ที่รับ array และ callback
+ ถ้า callback เป็น double → คืนค่า array ที่คูณ 2 ทุกตัว
+ ถ้า callback เป็น square → คืนค่า array ที่ยกกำลังสองทุกตัว*/
+
+ function z05 (array, callback) {
+    let result = []
+    for (const i of array) {
+        result.push(callback(i))
+    }
+    return result
+}
+
+function double05(a) {
+    return a * 2
+}
+
+function square05(a) {
+    return a * a
+}
+
+console.log(z05([1, 2, 3], double05)); // 
+console.log(z05([1, 2, 3], square05)); //    
+
+/* 5. Recursive Function 
+เขียนฟังก์ชัน factorial(n) แบบ recursion*/
+
+function factorial(n) {
+  if (n === 0) return 1;  // base case
+  return n * factorial(n - 1);
+}
+
+console.log(factorial(5)); // 120
