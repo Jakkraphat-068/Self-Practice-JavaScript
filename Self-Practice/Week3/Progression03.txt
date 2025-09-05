@@ -1,8 +1,82 @@
 Self-Practice-03  จะเป็นการทำความเข้าใจเกี่ยวกับฟังก์ชัน function เป็นหลัก 
+*** arguments = คือตัวแปรที่ส่งเข้าไปในฟังก์ชัน
 1. Life-Time 
   พารามิเตอร์หรือค่าบางค่าในภายในฟังก์ชัน เราไม่สามารถอ้างถึงได้อีกหลังจากที่ฟังก์ชันเพราะตัวพารามิเตอร์จะมีช่วงอายุอยู่แค่ตอนฟังก์ชันทำงานต่อครั้งเท่านั้น พอฟังก์ชันทำงานเสร็จ พารามิเตอร์นั้นก็จะถูกฆ่าทิ้งอ้างถึงไม่ได้อีก
   - อย่างตัวอย่างแรกที่เห็นว่า ตัวแปร message ถูกประกาศอยู่ในฟังก์ชันพอฟังก์ชันทำงานจบ เราจึงได้ error เมื่อเรา console.log(message) 
   - เช่นกันกับ a ในตัวอย่างที่สองที่ก็เป็นกรณีเดียวกันกับ message แต่ยกเว้น c เพราะ c นั้นถูกประกาศไว้แล้วนอกฟังก์ชันอยู่แล้ว ดังนั้นถึงแม้ c จะถูกดีงไปใช้ใน function ก็ยังจะสามารถอ้างถึงได้อยู่ดี
 
+
+
+2. Higher-Order Functions 
+ เป็นฟังก์ชันใน JavaScript ที่มีคุณสมบัติพิเศษ คือ:
+  -รับฟังก์ชันเป็นพารามิเตอร์:  สามารถรับฟังก์ชันอื่นเป็นอาร์กิวเมนต์ได้
+  -คืนค่าฟังก์ชัน: สามารถส่งคืนฟังก์ชันเป็นผลลัพธ์ได้
+  -(map(), filter(), และ reduce() ก็ถือเป็น higher order function เช่นกัน)
+
+
+
+3.create Function 
+  -  Callback Function คือฟังก์ชันที่ถูกส่งเป็น พารามิเตอร์ (argument) ให้กับฟังก์ชันอื่น 
+
+  -  เราสามารถเก็บฟังก์ชันไว้ในตัวแปรได้ ex.
+       let a = function a(para)  {
+        statements
+      }
+
+  3.1 Function Declarations 
+    - เป็นการสร้างฟังก์ชันที่พบเห็นได้บ่อยๆ มีจุกสังเกตคือ ใช้  function keyword โครงสร้างง่าย
+       function name(parameter) { 
+         statements 
+       } 
+    
+  3.2  Anonymous Function 
+    - คือฟังก์ชันที่ไม่มีชื่อ ส่วนมากก็คือ callback function เพราะชอบเก็บไว้ในตัวแปร
+
+  3.3  Arrow Function Expressions
+    - ไม่ต้องใช้คำว่า function ในการประกาศ
+    - ไม่ต้องใช้ return และ {} หากฟังก์ชันมีเพียงคำสั่งเดียว 
+    - ในกรณีอื่น
+      // No param
+         () => expression
+      // One param
+         param => expression
+      // Multiple param
+         (param1, paramN) => expression
+      // Multiline statements
+         param1 => {
+            statement1;
+             …
+            statementN;
+         }
+       (param1, paramN) => {
+            statement1;
+             …
+            statementN;
+         }
+
+
+4. Primitive Parameter Passing  ที่สรุปเข้าใจคือ เวลาเราส่งตัวแปรที่มีค่าเป็นพวก Primitive data type (number, string, boolean …)ไปให้พารามิเตอร์ในฟังก์ชัน parameter 
+ตัวนั้นจะเป็นอีก address หนึ่งที่มีค่าเหมือนกับตัวแปรนั้นหรือก็คือมันเป็น address คนล่ะ address กันดังนั้นต่อให้เราเปลี่ยนค่า ของตัว parameter 
+แต่ตัวแปรที่เราส่งไปก็จะยังคงค่าเหมือนเดิม อย่างในตัวอย่างที่ตัวให้มีคำสั่งเปลี่ยนค่า theSide แค่คำตอบใน function  ก็คือ สี่เหมือนเดิม
+
+
+
+5.Object Parameter Passing เราสามารถส่งพวก Object / Array / Function ไปเป็น parameter ได้ โดยเราสามารถเปลี่ยนแปลงค่าจริงได้ เพราะ สิ่งที่เราส่งไปให้ parameter คือ address
+ของที่เราส่งไปจริงๆ ทำให้ทั้งสองชี้ที่ address เดียวกันทำให้ค่าเปลี่ยนแปลงได้
+
+
+
+6. Default Parameters เราสามารถกำหนดค่า default for parameter ได้ ทำให้เราสามารถเรียกฟังก์ชันโดยที่ไม่ต้องใส่ค่าให้ก็ได้
+
+
+
+7. ...(rest) & ...(spread) เรายังคงสามารถใช้  ทั้งสองอย่างกับฟังก์ชันได้อยู่
+
+
+
+8. - Destructuring: Unpacking elements in array passed as a function parameter
+ ก็คือเราสามารถแยาก item แต่ล่ะตัวใน array ที่ส่งไปให้ parameter ได้ โดยการใช้ []
+   - เช่นเดียวกับ object เราก็สามารถทำได้เหมือน array เพียงแต่ใช้ {}แทนก็เท่านั้น
+   - เราสามารถ Combined Array and Object โดยใช้ fuction ได้เช่นกัน อย่างตัวอย่างที่ใช่ [{}]
 
 
