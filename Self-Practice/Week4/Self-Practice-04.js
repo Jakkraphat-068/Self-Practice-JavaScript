@@ -1,21 +1,4 @@
-//Anonymous function 'funtion that no name' ไม่สามารถอ้างชื่อได้
-// stack is (เข้าทีหลังออกก่อน) queue is (คือคิวในภาษาไทยเลย)
 
-
-// บาง method จะเปลี่ยนค่าเดิมของ array บางอันก็ ไม่เปลี่ยน
-const word1 = ["mango", "apple", "mongosteen", "oranges"]
-// 1.Anonymous Function (callback function)
-// const shortwords=words.filter((word) => word.length <= 6) 
-
-// 2. Anonymous function declartion
-/*const shortwords = words.filter(function (word){
-    word.length <= 6
-})*/
-
-// 3. reuse call back fuction (named function)
-/*function wordLength(word) {
-    return word.length <= 6
-}*/
 //const shortwords = words.filter(wordLength)
 //const shortwords = words.filter(wordLength("apple")) // got output is boolean
 //console.log(shortwords);//อันนี้การแสดงว่า filter ไป ค่าใน words ยังเหมือนเดิม
@@ -25,27 +8,19 @@ const word1 = ["mango", "apple", "mongosteen", "oranges"]
 //console.log(shortedwords);
 
 /* เปลี่ยนตัวทุกตัวเป็นตัวใหญ่*/
-/*let letters = [...'hello world']
+let letters = ([...'hello world'])
  let uppercase = ''
  letters.forEach((letter) => {
  uppercase += letter.toUpperCase()
  })
  console.log(`uppercase: ${uppercase}`) // "HELLO WORLD"*/
 
-const words = ['mango','apple','mangosteen','orange']
-let uppercase = words.map((word) => word.toUpperCase())
-console.log(uppercase)
+//const words = ['mango','apple','mangosteen','orange']
+//let uppercase = words.map((word) => word.toUpperCase())
+//console.log(uppercase)
 
 
-const students = [
-  { id: 1, name: "Somchai Jaidee" },
-  { id: 2, name: "Suda Deejai" },
-  { id: 3, name: "John Smith" },
-]
 
-/*const studentID = students.filter((student) => student.id % 2 == 0).map((student) => student.id)   //
-console.log(studentID);
-console.log(students);*/
 // find word that have mango
 const word2 = ["mango", "apple", "mangosteen", "oranges", "mangoes"]
 const mango = word2.filter(word => word.toLowerCase().includes("mango"))
@@ -98,7 +73,7 @@ console.log(word3);
 const word4 = ["mango", "apple", "mangosteen", "oranges", "mangoes"]
 
 console.log(word4.slice(2));
-console.log(word4.slice(0, 3));
+console.log(word4.slice(1, 4));
 console.log(word4.fill(null));
 
 console.log('///////////////////////////////////////////////////////////////////////////////////////');
@@ -176,8 +151,14 @@ console.log(getfgNames(stds));
 // indexof vs findindex
 
 //indexof
-
+const arr10 = [10, 20, 30, 40];
+console.log(arr10.indexOf(20)); // Output: 1
+console.log(arr10.indexOf(50)); // Output: -1
 //findindex ต้องการ callback function
+const arr = [{ id: 1 }, { id: 2 }, { id: 3 }];
+console.log(arr.findIndex(item => item.id === 2)); // Output: 1
+console.log(arr.findIndex(item => item.id === 4)); // Output: -1
+
 
 console.log(array1.join(' '));
 console.log(array1); 

@@ -1,0 +1,24 @@
+Self-Pratice-05 JavaScript Modules
+- Module คือไฟล์โค้ด JavaScript ที่สามารถ export ตัวแปร ฟังก์ชัน หรือ class ออกไปใช้ในไฟล์อื่นได้ และสามารถ import เข้ามาใช้ได้
+   ช่วยให้โค้ด แยกส่วน และ นำกลับมาใช้ซ้ำได้ ทำให้ดูสะอาดขึ้น
+- Tree shaking = กระบวนการลบโค้ดที่ไม่ได้ใช้ออกจากโปรแกรม
+   อาศัย import และ export เพื่อตรวจว่ามี code ไหนถูกใช้งานจริง
+   ใช้เครื่องมืออย่าง Webpack, Rollup, Esbuild เพื่อลดขนาดไฟล์ใน production
+
+1. JS Modules
+CommonJS → ใช้ใน Node.js (เดิม)
+   -require() สำหรับ import
+   -module.exports สำหรับ export
+ES Modules (ESM) → มาตรฐานสากล, ใช้ได้กับ browser และ Node.js (ใหม่)
+   -import และ export
+
+ตัวอย่างแรกคือแบบ common JS
+ใช้ module.exports = ตัวที่เราจะใส่ ถ้าสองตัวใช้  ในการ export ค่า โดย ตอน import ก็ ใช้ require('path');
+Way1: export เดี่ยว ๆ -> import ตั้งชื่ออะไรก็ได้
+Way2: export เป็น object -> import ใช้ destructuring
+
+
+
+2. ES Modules Export
+ - Named export สามารถ export ได้หลายตัวพร้อมกัน ตอน Named Export  ต้องimportด้วยชื่อเดิม (หรือเปลี่ยนชื่อด้วย as)
+ - Default export ได้ตัวเดียวต่อไฟล์ ตอน Default Export importด้วยชื่ออะไรก็ได้

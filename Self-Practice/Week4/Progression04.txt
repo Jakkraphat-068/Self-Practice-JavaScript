@@ -1,0 +1,116 @@
+self-Practice-04 จะเป็นการเน้นทำโจทย์เกี่ยวกับสามเรื่องที่เรียนมาทั้งหมด เพื่อให้คุ้นชินเพื่อนำไปใช้ในโจทย์ที่คล้ายกันใยตอนสอบ
+
+ 1. โจทย์ข้อ 1 เปลี่ยนตัวทุกตัวเป็นตัวใหญ่
+ 1.1 แบบที่ผมทำเองโดยใช้ฟังก์ชันวนลูปแทน 
+   let letters = ([...'hello world'])
+     let uppercase = ''
+     letters.forEach((letter) => {
+     uppercase += letter.toUpperCase()
+    })
+   console.log(`uppercase: ${uppercase}`)
+  1.[...'hello world'] แตก string ออกเป็น array ตัวอักษร
+  2. ใช้ forEach วนทุกตัวอักษร แปลงเป็น uppercase แล้วต่อ string กลับมา
+
+ 1.2 แบบที่ง่ายกว่าคือการใช้เมธอด map คืน array ใหม่ โดยเปลี่ยนทุกคำเป็นตัวใหญ่
+ const words = ['mango','apple','mangosteen','orange']
+ let uppercase = words.map((word) => word.toUpperCase())
+ console.log(uppercase)
+
+
+
+ - โจทย์ข้อ 2 find word that have mango
+  ใช้ เมธอด filter  เลือกเฉพาะ element ที่ includes("mango")
+  const word2 = ["mango", "apple", "mangosteen", "oranges", "mangoes"]
+  const mango = word2.filter(word => word.toLowerCase().includes("mango"))
+  console.log(mango);
+
+
+
+3. find every word that have apple
+แบบใช้ฟังก์ชัน
+ 3.1 word2.forEach(function(a, b) {
+    if (a.toLowerCase().includes("apple")) {
+        console.log(`${a}: have apple`);
+    } else {
+        console.log(`${a}: don't have apple`);
+    }
+});
+ 1. ใช้ for each ในการวนลูปค่าแต่ล่ะตัวใน array ของ word2 
+ 2. ใช้ method toLowerCase เปลี่ยนทุกในอาเรเป็ยตัวเล็กแล้วค่อยใช้ method includes ในการหาว่าitem ตัวไหนมีมีคำว่า apple
+ 
+
+
+4. แทนที่ RED ด้วย R
+   const product = [1, 'RED', 102]
+   const productDetail = product.reduce((detail, prop) => {
+      return prop === 'RED' ? detail?.concat('R') : detail?.concat(prop)}, '')
+  1.reduce → รวม array เป็นค่าเดียว
+  2.detail เริ่มจาก string ว่าง ''
+  3.ถ้าเจอ 'RED'  แทนเป็น 'R'
+
+
+
+5. find cart total and return object that show the total {total: 1080}
+const cart = [
+  { productId: 1001, price: 500, quantity: 2 },
+  { productId: 1002, price: 10, quantity: 3 },
+  { productId: 1003, price: 5, quantity: 10 },
+]
+const totalcart = cart.reduce((pricetotal, item) => {
+    pricetotal.total += item.price * item.quantity;
+    return pricetotal;
+}, {total: 0})
+
+console.log(totalcart);
+
+ 1.reduce  เก็บผลรวมราคาสินค้า
+ 2.pricetotal เริ่มจาก { total: 0 }
+ 3.ทุก item  price * quantity แล้วบวกเข้า pricetotal.total
+
+
+
+ 6. ฝึกใช้ splice 
+  โครงสร้างง่ายๆ .splice(start, remove,  add1, add...)
+  add เริ่มที่ index ไหน
+  remove จะลบกี่ตัว (ระวัง เพราะมันจะลบตัว index ที่เราเริ่มด้วย)
+  ต่อจากนั้นก็คือเพิ่มตัวต่อจากที่เราเริ่ม
+
+
+7. ฝึกใช้ slice
+ กรณี 1 slice(ใส่ตัวเดียว) มันจะตัดตามจำนวนที่เราใส่โดยจากเริ่มจากตัวแรกสุดเองโดยอัตโนมัติ แล้วมันจะคืนค่าตัวที่เหลือมาให้
+ กรณี 2 slice(a, b) จะตัดindex a จนถึง index b แล้วโชว์จะคืนค่าที่เราตัดมา
+
+
+
+8. fill
+-array.fill(value, start, end) 
+- ถ้าใส่แค่ค่าอย่างเดียวมันจะแทนที่ทุกตัวเป็นค่านั้นหมด
+
+
+
+9. method array อื่นๆ
+ - .concat = รวม array
+ - .reverse = reverse array (เปลี่ยนของเดิม)
+ - sort(condition) = sort ตัวเลขน้อยไปมาก (เปลี่ยนของเดิม)
+   - เรียง ตัวเลขจากน้อยไปมาก (Ascending) = .sort((a, b) => a - b);
+   - เรียง ตัวเลขจากมากไปน้อย (Descending) = .sort((a, b) => b - a);
+   - เรียง ตัวอักษร A ถึง Z .sort((a, b) => a.localeCompare(b))
+   - เรียง ตัวอักษร Z ถึง A .sort((a, b) => b.localeCompare(a));
+   object ก็แค่ .sort((a, b) => a.score - b.score); เป็นต้น
+ - join('ตัวคั่น');
+
+
+
+10. indexof vs find index
+
+indexOf
+การทำงาน: ใช้ค้นหาค่าที่ตรงกันในอาร์เรย์โดยตรง (เปรียบเทียบค่าแบบเข้มงวด ===).
+พารามิเตอร์: รับค่าที่ต้องการค้นหา.
+ผลลัพธ์: คืนค่า index ของค่าที่พบครั้งแรกในอาร์เรย์ หรือ -1 หากไม่พบ.
+ไม่เหมาะกับใช้ใน object
+
+findIndex
+การทำงาน: ใช้ค้นหา index ของค่าที่ตรงตามเงื่อนไข (predicate) ที่กำหนดในฟังก์ชัน callback.
+พารามิเตอร์: รับฟังก์ชัน callback ที่กำหนดเงื่อนไขการค้นหา.
+ผลลัพธ์: คืนค่า index ของค่าที่ตรงเงื่อนไขครั้งแรก หรือ -1 หากไม่พบ.
+ใช้กับ object ได้
